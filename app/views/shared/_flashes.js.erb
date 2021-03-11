@@ -1,0 +1,5 @@
+var flashes      = document.querySelector(".flashes");
+
+if (flashes) {
+  flashes.innerHTML ="<%= escape_javascript(render partial: 'shared/flashes.html.erb').html_safe %>";
+}

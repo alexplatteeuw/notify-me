@@ -1,0 +1,12 @@
+<% avatar_options =  { 
+  class: "avatar dropdown-toggle ml-3", 
+  id: "navbarDropdown", 
+  data: { toggle: "dropdown" }, 
+  'aria-haspopup': true, 
+  'aria-expanded': false } %>
+
+<% if current_user.avatar.attached? %>
+  <%= cl_image_tag(current_user.avatar.key, avatar_options) %>
+<% else %>
+  <%= image_tag("avatar.png", avatar_options) %>
+<% end %>

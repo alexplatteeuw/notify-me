@@ -1,0 +1,24 @@
+<div class="col-6 col-md-6 col-lg-3 d-flex align-items-stretch">
+  <div class="card">
+    <% if episode.present? && episode.thumbnail.present? %>
+      <%= image_tag "#{IMAGE_URL}w300#{episode.thumbnail}", class: "card-img-top" %>
+    <% else %>
+      <%= image_tag "no-thumbnail.svg", class:"bg-lightgray card-img-top" %>
+    <% end %>
+    <div class="content">
+      <ul class="list-unstyled">
+        <% if episode.present? %>
+          <li><%= type %> episode<b> (S0<%= episode.season_number %>xE0<%= episode.episode_number %>)</b></li>
+          <br>
+          <li><%= episode.name %></li>
+          <li>Air date: <%= l(episode.air_date, format: :long) %></li>
+          <li>Vote: <%= episode.vote %></li>
+        <% else %>
+          <li>Next episode</li>
+          <br>
+          <li>Date not provided yet ...</li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+#avatar-container {
+  img {
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+  }
+
+  label[for="user_avatar"] {
+    color: black;
+    position: absolute;
+  }
+
+  input#user_avatar {
+    width: 0;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  #submit-btn input {
+    padding: 0.15rem;
+  }
+
+  .form-group.file.optional.user_avatar {
+    margin-bottom: 0;
+  }
+}

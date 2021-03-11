@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="pt-4">
+    <%= render partial: "shared/search-bar", locals: { url: favorites_path } %>
+  </div>
+  <ul class="favorites-sorting">
+    <li><%= link_to "Returning series", favorites_path(status: "Returning Series") %></li>
+    <li><%= link_to "Ended", favorites_path(status: "Ended") %></li>
+    <li><%= link_to "In Production", favorites_path(status: "In Production") %></li>
+    <li><%= link_to "Canceled", favorites_path(status: "Canceled") %></li>
+    <li>
+      <%= link_to favorites_path(order: "desc") do %>
+        <i class="fas fa-sort-down"></i>
+      <% end %>
+      <%= link_to favorites_path(order: "asc") do %>
+        <i class="fas fa-sort-up"></i>
+      <% end %>
+    </li>
+  </ul>
+  <div class="container">
+    <% if @pagy.pages > 1 %>
+      <%== pagy_bootstrap_nav(@pagy) %>
+    <% end %>
+  </div>
+  <div class="favorites-grid-container container justify-content-between">
+    <%= render partial: "favorites", collection: @favorites, as: :tv_show, locals: { notifications: @notifications, type: :tv_show } %>
+  </div>
+</div>

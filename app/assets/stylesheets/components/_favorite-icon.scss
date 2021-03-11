@@ -1,0 +1,21 @@
+.tv-container {
+  .fa-heart {
+    color: #e30b5d;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+}
+
+.banner {
+  .fa-heart {
+    font-size: 1.2rem;
+    color: #e30b5d;
+    line-height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background: rgba(17, 24, 39, 1);
+    text-align: center;
+  }
+}

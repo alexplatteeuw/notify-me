@@ -1,0 +1,7 @@
+<div id="poster">
+  <% if @tv_show.poster_path.present? %>
+    <%= image_tag("#{IMAGE_URL}w200#{@tv_show.poster_path}") %>
+  <% else %>
+    <%= image_tag("poster.svg", id: "placeholder") %>
+  <% end %>
+</div>

@@ -4,22 +4,32 @@
 // 3. You can override them below!
 
 // General style
-$font-family-sans-serif:  $body-font;
-$headings-font-family:    $headers-font;
-$body-bg:                 $light-gray;
-$font-size-base: 1rem;
+$font-family-sans-serif: $body-font;
+$headings-font-family: $headers-font;
+$body-bg: $light-gray;
+$font-size-base: 0.8rem;
 
 // Colors
 $body-color: $gray;
-$primary:    $blue;
-$success:    $green;
-$info:       $yellow;
-$danger:     $red;
-$warning:    $orange;
+$primary: $blue;
+$success: $green;
+$info: $green;
+$danger: $red;
+$warning: $orange;
+
+// titles
+$h1-font-size: $font-size-base * 1.5 !default;
+$h2-font-size: $font-size-base * 1.25 !default;
+$h3-font-size: $font-size-base * 1 !default;
+$h4-font-size: $font-size-base * 0.75 !default;
+$h5-font-size: $font-size-base * 0.5 !default;
 
 // Buttons & inputs' radius
-$border-radius:    2px;
+$border-radius: 2px;
 $border-radius-lg: 2px;
 $border-radius-sm: 2px;
 
-// Override other variables below!
+// Links
+$link-color: black;
+$link-decoration: none;
+$link-hover-decoration: none;

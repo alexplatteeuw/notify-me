@@ -1,0 +1,10 @@
+<div class="episodes row">
+  <% if @tv_show.last_episode.present? %>
+    <%= render partial: "episode", locals: { episode: @tv_show.last_episode, type: "Last" } %>
+  <% end %>
+  <% if  @tv_show.next_episode.present? %>
+    <%= render partial: "episode", locals: { episode: @tv_show.next_episode, type: "Next" } %>
+  <% elsif @tv_show.returning? %>
+    <%= render partial: "episode", locals: { episode: nil, type: "Next"} %>
+  <% end %>
+</div>

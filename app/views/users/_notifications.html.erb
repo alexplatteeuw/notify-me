@@ -1,0 +1,23 @@
+<div class="card-header">
+  <h2>Notifications</h2>
+</div>
+<div class="card-body">
+    <% if @favorites.present? %>
+      <h3>Email me before next episode's air date:</h3>
+      <% @favorites.each do |favorite| %>
+        <div class="d-flex flex-row justify-content-between notification-row">
+          <%= link_to favorite.to_tv_show.name, tv_show_path(favorite.tmdb_id), target: "_blank" %>
+          <div>
+            <%= render partial: "shared/notification", locals: { 
+              favorite: favorite, 
+              favorite_type: :tv, 
+              tv_show_id: favorite.tmdb_id, 
+              notifications: @notifications 
+            } %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <h2>You don't have any notifications yet.</h2>
+    <% end %>
+</div>

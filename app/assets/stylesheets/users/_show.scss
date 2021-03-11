@@ -1,0 +1,49 @@
+#profile {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  .card {
+    padding: 0;
+  }
+
+  .nav-link:hover {
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .nav-pills .nav-link.active {
+    color: black;
+    background-color: white;
+  }
+
+  #settings-pannel {
+    height: fit-content;
+    li {
+      padding: 0.5rem 0;
+    }
+  }
+
+  #edit-user {
+    i {
+      cursor: pointer;
+    }
+  }
+
+  #notifications {
+    h3 {
+      margin-bottom: 2rem;
+    }
+
+    .card-body {
+      padding: 1rem 3rem;
+    }
+
+    .notification-row {
+      margin: 1rem 0rem;
+    }
+
+    .toggle + label {
+      margin-right: 2.5rem;
+    }
+  }
+}

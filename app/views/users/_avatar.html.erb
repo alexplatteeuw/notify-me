@@ -1,0 +1,18 @@
+<div id="avatar-container">
+  <%= simple_form_for(user, url: user_path, html: { method: :patch }) do |f| %>
+    <div class="d-flex flex-column align-items-center">
+      <div>
+        <% if user.avatar.attached? %>
+          <%= cl_image_tag(user.avatar.key, height: 100, width: 100, crop: :fill) %>
+        <% else %>
+          <%= image_tag("avatar.png", size: "100x100") %>
+        <% end %>
+        <%= f.label :avatar do %><i class="fas fa-edit"></i><% end %>
+        <%= f.input :avatar, as: :file, label: false %>
+      </div>
+      <div id="submit-btn">
+        <%= f.button :submit, "Save", class: "btn btn-sm btn-outline-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

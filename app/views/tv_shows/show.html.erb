@@ -1,0 +1,48 @@
+<section>
+  <article class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(<%= "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/#{@tv_show.backdrop_path}" %>);">
+    <div class="container d-flex">
+      <%= render partial: "poster", locals: { tv_show: @tv_show } %>
+      <div class="ml-5">
+        <div class="d-flex align-items-start">
+          <h1>
+            <%= @tv_show.name %>
+            <% if @tv_show.first_air_date.present? %>
+              <span id="year">(<%= @tv_show.first_air_date %>)</span>
+            <% end %>
+          </h1>
+          <% if @tv_show.status.present? %>
+            <span class="badge badge-info ml-3" id="status"><%= @tv_show.status %></span>
+          <% end %>
+        </div>
+        <p id="genres"><%# @tv_show.genres %> | <span><%= @tv_show.episode_run_time %>m</span></p>
+        <div class="d-flex align-items-center">
+          <div class="mr-3">
+            <%= render partial: "chart", locals: {tv_show: @tv_show} %>
+          </div>
+          <div class="mb-3">
+            <%= render partial: "shared/favorite-icon", locals: {favorite: @tv_show, type: :tv_show} %>
+          </div>
+          <% if @tv_show.returning? %>
+            <div class="mb-3 ml-4">
+              <h3>Email me before next episode's air date:</h3>
+              <%= render partial: "shared/notification", locals: { favorite: @favorite, type: :tv_show, tv_show_id: @favorite.tmdb_id, notifications: @notifications } %>
+            </div>
+          <% end %>
+        </div>
+        <h2>Overview</h2>
+        <p class="overview text-justify"><%= @tv_show.overview %></p>
+        <div id="tagline"><%= @tv_show.tagline %></div>
+      </div>
+    </div>
+  </article>
+  <div class="container">
+    <% if @people.present? %>
+      <article class="show-grid-container">
+        <%= render partial: "person", collection: @people, as: :person %>
+      </article>
+    <% end %>
+    <article class="py-4">
+      <%# render partial: "episodes", locals: {tv_show: @tv_show} %>
+    </article>
+  </div>
+</section>

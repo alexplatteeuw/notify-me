@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NotifyMe</title>
+    <title>NotifyTvShows</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,9 +13,15 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
-
-    <%= yield %>
+    <div class="d-flex flex-column min-vh-100">
+      <%= render 'shared/navbar' %>
+      <div class="flashes">
+        <%= render 'shared/flashes' %>
+      </div>
+      <article class="flex-grow-1 <%= class_names devise_view? && %w(container devise mt-5) %>">
+        <%= yield %>
+      </article>
+      <%= render 'shared/footer' %>
+    </div>
   </body>
 </html>

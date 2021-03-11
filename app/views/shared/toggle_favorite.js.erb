@@ -1,0 +1,31 @@
+var favoriteIcon = document.querySelector("#<%= type %>-<%= @favorite.tmdb_id %>-icon i");
+var favoriteCard = document.getElementById("<%= type %>-<%= @favorite.tmdb_id %>");
+var checkboxes = document.querySelectorAll('.toggle');
+
+<%= render partial: 'shared/flashes.js.erb' %>
+
+  if (checkboxes) {
+    checkboxes.forEach((checkbox) => {
+      checkbox.classList.remove('special');
+    });
+  }
+
+if (favoriteIcon && <%= current_user.favorited?(@favorite) %>) {
+  favoriteIcon.classList.remove('far');
+  favoriteIcon.classList.add('fas');
+}
+
+if (favoriteIcon && <%= !current_user.favorited?(@favorite) %>) {
+  favoriteIcon.classList.add('far');
+  favoriteIcon.classList.remove('fas');
+  if (checkboxes) {
+    checkboxes.forEach((checkbox) => {
+      checkbox.classList.add('special');
+      checkbox.checked = false;
+    });
+  }
+}
+
+if (favoriteCard) {
+  favoriteCard.remove();
+}

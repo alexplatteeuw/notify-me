@@ -1,0 +1,32 @@
+<div id="tv-<%= tv_show.id %>">
+  <%= link_to tv_show_path(tv_show.tmdb_id) do %>
+    <div class="favorite-tv-card shadom-sm my-4">
+      <div class="content">
+        <% if tv_show.poster_path.present? %>
+          <%= image_tag("#{IMAGE_URL}w200#{tv_show.poster_path}") %>
+        <% else %>
+          <%= image_tag("poster.svg") %>
+        <% end %>
+        <div class="infos">
+          <h2 class="name"><%= tv_show.name %></h2>
+          <p><% if tv_show.first_air_date.present? %>
+            <%= l(tv_show.first_air_date, format: :long) %>
+          <% else %>
+            Unknown
+          <% end %></p>
+          <p class="overview"><%= tv_show.overview %></p>
+        </div>
+      </div>
+      <%# if @notifications.by_tmdb_id_and_type(favorite_type: favorite_type, tmdb_id: tv_show.id).present? %>
+      <ul class="notifications">
+        <%# @notifications.by_tmdb_id_and_type(favorite_type: favorite_type, tmdb_id: tv_show.id).each do |notification| %>
+          <li><%# notification.frequency %></li>
+        <%# end %>
+        <p>notifications</p>
+      </ul>
+      <%# end %>
+      <%= render partial: "shared/favorite-icon", locals: { favorite: tv_show, type: type } %>
+      <p class="status badge"><%= tv_show.status %></p>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,10 @@
+<div class="card shadow-sm">
+    <% if person.photo.present? %>
+      <%= image_tag("#{IMAGE_URL}w138_and_h175_face#{person.photo}") %>
+    <% else %>
+      <%= image_tag("person-photo.svg") %>
+    <% end %>
+  <div class="card-body">
+    <p class="card-text"><%= person.name %></p>
+  </div>
+</div>

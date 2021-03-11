@@ -7,7 +7,11 @@
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+// @import "simple_calendar";
 
 // Your CSS partials
 @import "components/index";
+@import "components/scrollbar";
 @import "pages/index";
+@import "tv_shows/index";
+@import "users/index";

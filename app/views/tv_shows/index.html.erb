@@ -1,0 +1,23 @@
+<div class="search-bar bg-gray shadow-sm py-4 mb-3">
+  <%= render partial: "shared/search-bar", locals: { url: tv_shows_path } %>
+</div>
+
+<div class="container">
+  <% if @tv_shows.present? %>
+    <% if params[:query].present? %>
+      <h1 class="mb-3">Results</h1>
+      <% if @pagy.pages > 1 %>
+        <%== pagy_bootstrap_nav(@pagy) %>
+      <% end %>
+    <% else %>
+      <h1 class="mb-3">Popular TV Shows</h1>
+    <% end %>
+    <div class="index-grid-container">
+      <%= render partial: "tv_show", collection: @tv_shows, as: :tv_show %>
+    </div>
+  <% else %>
+    <div class="row">
+      <div class="no-results col-md-8 mx-auto"></div>
+    </div>
+  <% end %>
+</div>
