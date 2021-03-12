@@ -1,6 +1,11 @@
 class TvShowsController < ApplicationController
   def index
-    tv_shows_attributes = params[:query].present? ? FetchTvShowsByName.run(params[:query]) : FetchPopularTvShows.run
+    
+    if params[:query].present?
+      tv_shows_attributes = Tmdb::Service.tv_shows_by_name(params[:query])
+    else
+      tv_shows_attributes = Tmdb::Service.popular_tv_shows
+    end
     tv_shows_ids = current_user.tv_shows.upsert_all(tv_shows_attributes, unique_by: :tmdb_id)
     @tv_shows = TvShow.find(tv_shows_ids.rows)
     if @tv_shows.present?
