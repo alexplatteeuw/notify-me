@@ -1,7 +1,7 @@
 <div class="col-6 col-md-6 col-lg-3 d-flex align-items-stretch">
   <div class="card">
-    <% if episode.present? && episode.thumbnail.present? %>
-      <%= image_tag "#{IMAGE_URL}w300#{episode.thumbnail}", class: "card-img-top" %>
+    <% if episode.present? && episode.still_path.present? %>
+      <%= image_tag "#{IMAGE_URL}w300#{episode.still_path}", class: "card-img-top" %>
     <% else %>
       <%= image_tag "no-thumbnail.svg", class:"bg-lightgray card-img-top" %>
     <% end %>
@@ -12,7 +12,7 @@
           <br>
           <li><%= episode.name %></li>
           <li>Air date: <%= l(episode.air_date, format: :long) %></li>
-          <li>Vote: <%= episode.vote %></li>
+          <li>Vote: <%= episode.vote_average %></li>
         <% else %>
           <li>Next episode</li>
           <br>

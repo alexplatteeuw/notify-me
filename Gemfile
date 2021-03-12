@@ -71,3 +71,5 @@ gem "pagy", "~> 3.11"
 gem "cloudinary", "~> 1.19"
 
 gem "acts_as_favoritor", "~> 5.0"
+
+gem "simple_calendar", "~> 2.4"

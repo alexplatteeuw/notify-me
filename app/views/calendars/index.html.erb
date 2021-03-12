@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="pt-5">
+    <%= month_calendar(events: @episodes) do |date, episodes| %>
+      <%= date %>
+
+      <% episodes.each do |episode| %>
+        <div>
+          <p class="badge badge-primary">
+            <%= episode.tv_show_name %>
+            <span>
+              S<%= episode.season_number %>xE<%= episode.episode_number %>
+            </span>
+          </p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
