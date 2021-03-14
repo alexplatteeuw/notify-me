@@ -3,7 +3,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
   
   has_one_attached :avatar
-  has_many :tv_shows
-  has_many :seasons, through: :tv_shows
-  has_many :episodes, through: :seasons
+
+  def tv_shows
+    favorited_by_type('TvShow')
+  end
 end

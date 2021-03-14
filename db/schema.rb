@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_081513) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["season_id"], name: "index_episodes_on_season_id"
+    t.index ["tmdb_id"], name: "index_episodes_on_tmdb_id", unique: true
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -102,12 +103,10 @@ ActiveRecord::Schema.define(version: 2021_03_11_081513) do
     t.string "status"
     t.text "tagline"
     t.integer "tmdb_id"
-    t.bigint "user_id", null: false
     t.float "vote_average"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["tmdb_id"], name: "index_tv_shows_on_tmdb_id", unique: true
-    t.index ["user_id"], name: "index_tv_shows_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -126,5 +125,4 @@ ActiveRecord::Schema.define(version: 2021_03_11_081513) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "episodes", "seasons"
   add_foreign_key "seasons", "tv_shows"
-  add_foreign_key "tv_shows", "users"
 end

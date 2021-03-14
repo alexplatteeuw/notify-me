@@ -1,23 +1,38 @@
 class TvShowsController < ApplicationController
+  before_action :build_seasons_and_episodes, only: [:show]
+
   def index
-    
     if params[:query].present?
-      tv_shows_attributes = Tmdb::Service.tv_shows_by_name(params[:query])
+      attributes = Tmdb::Service.fetch_tv_shows_by(query: params[:query])
     else
-      tv_shows_attributes = Tmdb::Service.popular_tv_shows
+      attributes = Tmdb::Service.fetch_popular_tv_shows
     end
-    tv_shows_ids = current_user.tv_shows.upsert_all(tv_shows_attributes, unique_by: :tmdb_id)
-    @tv_shows = TvShow.find(tv_shows_ids.rows)
-    if @tv_shows.present?
+
+    @tv_shows = TvShow.bulk_create(attributes) if attributes.present?
+      
+    if @tv_shows.present? 
       @pagy, @tv_shows = pagy_array(@tv_shows, items: 20)
     else
       flash.now.alert = "Sorry, no TV shows found."
     end
   end
-
+  
   def show
-    @tv_show = set_tv_show(params[:id])
-    # @notifications = current_user.notifications
     redirect_to root_path, notice: "Sorry, TV show not found." if @tv_show.blank?
+  end
+  
+  private
+
+  def build_seasons_and_episodes
+    set_tv_show
+    @tv_show = @tv_show.update_with_all_attributes
+    attributes = Tmdb::Service.fetch_seasons_by(tv_show: @tv_show)
+    seasons = Season.bulk_create(tv_show: @tv_show, attributes: attributes)
+    attributes = Tmdb::Service.fetch_episodes_by(tv_show: @tv_show)
+    seasons.each { |season| Episode.bulk_create(season: season, attributes: attributes) }
+  end
+  
+  def set_tv_show
+    @tv_show = TvShow.find_or_initialize_by(tmdb_id: params[:id])
   end
 end

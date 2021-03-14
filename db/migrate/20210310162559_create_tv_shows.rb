@@ -11,7 +11,6 @@ class CreateTvShows < ActiveRecord::Migration[6.1]
       t.string :status
       t.text :tagline
       t.integer :tmdb_id, unique: true
-      t.references :user, null: false, foreign_key: true
       t.float :vote_average
 
       t.timestamps

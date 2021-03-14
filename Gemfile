@@ -73,3 +73,5 @@ gem "cloudinary", "~> 1.19"
 gem "acts_as_favoritor", "~> 5.0"
 
 gem "simple_calendar", "~> 2.4"
+
+gem "sidekiq", "~> 6.1"
