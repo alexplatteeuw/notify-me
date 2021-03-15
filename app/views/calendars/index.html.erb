@@ -1,8 +1,7 @@
 <div class="container">
   <div class="pt-5">
     <%= month_calendar(events: @episodes) do |date, episodes| %>
-      <%= date %>
-
+      <%= l(date, format: :short) %>
       <% episodes.each do |episode| %>
         <div>
           <p class="badge badge-primary">
