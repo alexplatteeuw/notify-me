@@ -36,9 +36,9 @@
     </div>
   </article>
   <div class="container">
-    <% if @people.present? %>
+    <% if @tv_show.people.present? %>
       <article class="show-grid-container">
-        <%= render partial: "person", collection: @people, as: :person %>
+        <%= render partial: "person", collection: @tv_show.people, as: :person %>
       </article>
     <% end %>
     <article class="py-4">

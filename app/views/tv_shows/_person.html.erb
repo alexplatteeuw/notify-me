@@ -1,6 +1,6 @@
 <div class="card shadow-sm">
-    <% if person.photo.present? %>
-      <%= image_tag("#{IMAGE_URL}w138_and_h175_face#{person.photo}") %>
+    <% if person.profile_path.present? %>
+      <%= image_tag("#{IMAGE_URL}w138_and_h175_face#{person.profile_path}") %>
     <% else %>
       <%= image_tag("person-photo.svg") %>
     <% end %>

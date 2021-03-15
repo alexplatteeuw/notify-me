@@ -8,7 +8,7 @@ class CreateEpisodes < ActiveRecord::Migration[6.1]
       t.integer :season_number
       t.float :vote_average
       t.text :overview
-      t.integer :tmdb_id
+      t.integer :tmdb_id, null: false, unique: true
       t.string :still_path
 
       t.timestamps

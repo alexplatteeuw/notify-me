@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_081513) do
+ActiveRecord::Schema.define(version: 2021_03_15_112804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_081513) do
     t.integer "season_number"
     t.float "vote_average"
     t.text "overview"
-    t.integer "tmdb_id"
+    t.integer "tmdb_id", null: false
     t.string "still_path"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -76,9 +76,23 @@ ActiveRecord::Schema.define(version: 2021_03_11_081513) do
     t.index ["scope"], name: "index_favorites_on_scope"
   end
 
+  create_table "people", force: :cascade do |t|
+    t.integer "tmdb_id", null: false
+    t.string "name"
+    t.string "known_for_department"
+    t.float "popularity"
+    t.string "profile_path"
+    t.string "job"
+    t.bigint "tv_show_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tmdb_id"], name: "index_people_on_tmdb_id", unique: true
+    t.index ["tv_show_id"], name: "index_people_on_tv_show_id"
+  end
+
   create_table "seasons", force: :cascade do |t|
     t.bigint "tv_show_id", null: false
-    t.integer "tmdb_id"
+    t.integer "tmdb_id", null: false
     t.date "air_date"
     t.integer "season_number"
     t.string "name"
@@ -102,7 +116,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_081513) do
     t.string "poster_path"
     t.string "status"
     t.text "tagline"
-    t.integer "tmdb_id"
+    t.integer "tmdb_id", null: false
     t.float "vote_average"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -124,5 +138,6 @@ ActiveRecord::Schema.define(version: 2021_03_11_081513) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "episodes", "seasons"
+  add_foreign_key "people", "tv_shows"
   add_foreign_key "seasons", "tv_shows"
 end

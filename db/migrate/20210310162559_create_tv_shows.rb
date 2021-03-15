@@ -10,7 +10,7 @@ class CreateTvShows < ActiveRecord::Migration[6.1]
       t.string :poster_path
       t.string :status
       t.text :tagline
-      t.integer :tmdb_id, unique: true
+      t.integer :tmdb_id, null: false, unique: true
       t.float :vote_average
 
       t.timestamps

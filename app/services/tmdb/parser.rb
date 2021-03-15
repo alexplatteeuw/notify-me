@@ -1,34 +1,54 @@
 module Tmdb
   class Parser
-    def initialize(attributes:, selection:)
-      @attributes = attributes
-      @selection  = selection
+    def initialize(json:, selection:)
+      @selection = selection
+      @json = prepare_json(json)
+    end
+
+    def self.run(json:, selection:)
+      new(json: json, selection: selection).set_attributes
     end
 
     def set_attributes
-      filter_attributes
-      transform_attributes
-    end
-
-    def filter_attributes
-      case @selection
-      when :minimum 
-        valid_keys = %i[id name poster_path vote_average]
-      when :maximum 
-        valid_keys = %i[id name poster_path vote_average backdrop_path episode_run_time first_air_date number_of_seasons overview status tagline]
-      when :season
-        valid_keys = %i[id air_date season_number name overview still_path vote_average episode_count]
-      when :episode
-        valid_keys = %i[id air_date episode_number name overview season_number still_path vote_average]
+      case @json
+      when Hash
+        perform_changes(@json)
+      when Array
+        @json.map { |json| perform_changes(json) }.compact
       end
-      @attributes.slice!(*valid_keys)
     end
 
-    def transform_attributes
-      @attributes[:tmdb_id] = @attributes.delete(:id)
-      @attributes[:created_at] = @attributes[:updated_at] = Time.now
-      @attributes[:episode_run_time] = @attributes[:episode_run_time]&.first if @selection == :maximum
-      @attributes
+    def perform_changes(json)
+      filter_attributes(json)
+      transform_attributes(json)
+      filter_elements(json)
+    end
+
+    def filter_attributes(json)
+      json.slice!(*@selection)
+    end
+
+    def transform_attributes(json)
+      json[:tmdb_id] = json.delete(:id)
+      json[:created_at] = json[:updated_at] = Time.now
+      json[:episode_run_time] = json[:episode_run_time]&.first if @selection == :tv_show_max
+    end
+
+    def filter_elements(json)
+      @selection == :season && json[:season_number].zero? ? nil : json
+    end
+
+    def prepare_json(json)
+      case @selection
+      when PERSON_ATTRIBUTES then json[:credits][:cast].dup
+      when SEASON_ATTRIBUTES then json[:seasons].dup
+      when EPISODE_ATTRIBUTES then json
+                                    .extend(Hashie::Extensions::DeepFind)
+                                    .deep_select(:episodes)
+                                    .flatten
+      else 
+        json.dup
+      end
     end
   end
 end
