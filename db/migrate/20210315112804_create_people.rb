@@ -7,6 +7,7 @@ class CreatePeople < ActiveRecord::Migration[6.1]
       t.float :popularity
       t.string :profile_path
       t.string :job
+      t.string :character
       t.references :tv_show, null: false, foreign_key: true
 
       t.timestamps

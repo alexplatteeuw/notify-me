@@ -37,12 +37,24 @@
   </article>
   <div class="container">
     <% if @tv_show.people.present? %>
-      <article class="show-grid-container">
-        <%= render partial: "person", collection: @tv_show.people, as: :person %>
-      </article>
+      <section class="tv-show-sections">
+        <h2>Series Cast</h2>
+        <div id="show-grid-container">
+          <%= render partial: "person", collection: @tv_show.people, as: :person %>
+        </div>
+      </section>
     <% end %>
-    <article class="py-4">
-      <%= render partial: "episodes", locals: {tv_show: @tv_show} %>
-    </article>
+    <% if @tv_show.episodes.present? %>
+      <section class="tv-show-sections">
+        <h2>Episodes</h2>
+        <%= render partial: "episodes", locals: {tv_show: @tv_show} %>
+      </section>
+    <% end %>
+    <% if @tv_show.last_season.present? %>
+      <section class="tv-show-sections">
+        <h2>Last Season</h2>
+        <%= render partial: "season", locals: { season: @tv_show.last_season } %>
+      </section>
+    <% end %>
   </div>
 </section>

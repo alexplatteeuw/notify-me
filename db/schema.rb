@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 2021_03_15_112804) do
     t.float "popularity"
     t.string "profile_path"
     t.string "job"
+    t.string "character"
     t.bigint "tv_show_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -97,6 +98,7 @@ ActiveRecord::Schema.define(version: 2021_03_15_112804) do
     t.integer "season_number"
     t.string "name"
     t.text "overview"
+    t.string "poster_path"
     t.string "still_path"
     t.float "vote_average"
     t.integer "episode_count"

@@ -1,0 +1,16 @@
+<div id="season">
+  <div class="card-season shadow-sm">
+    <% if season.poster_path.present? %>
+      <%= image_tag "#{IMAGE_URL}w130_and_h195_bestv2#{season.poster_path}" %>
+    <% else %>
+      <%= image_tag "no-season-poster.svg", class:"bg-lightgray" %>
+    <% end %>
+    <div class="card-infos">
+      <h2><%= season.name %>
+        <span>(<%= season.episode_count %> episodes)</span>
+      </h2>
+      <p><%= l(season.air_date, format: :long) %></p>  
+      <p class="overview"><%= season.overview %></p>
+    </div>
+  </div>
+</div>

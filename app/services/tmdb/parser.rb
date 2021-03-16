@@ -31,7 +31,7 @@ module Tmdb
     def transform_attributes(json)
       json[:tmdb_id] = json.delete(:id)
       json[:created_at] = json[:updated_at] = Time.now
-      json[:episode_run_time] = json[:episode_run_time]&.first if @selection == :tv_show_max
+      json[:episode_run_time] = json[:episode_run_time]&.first if @selection == TV_SHOW_MAX_ATTRIBUTES
     end
 
     def filter_elements(json)
@@ -43,10 +43,9 @@ module Tmdb
       when PERSON_ATTRIBUTES then json[:credits][:cast].dup
       when SEASON_ATTRIBUTES then json[:seasons].dup
       when EPISODE_ATTRIBUTES then json
-                                    .extend(Hashie::Extensions::DeepFind)
-                                    .deep_select(:episodes)
-                                    .flatten
-      else 
+        .extend(Hashie::Extensions::DeepFind)
+        .deep_select(:episodes)&.flatten
+      else
         json.dup
       end
     end

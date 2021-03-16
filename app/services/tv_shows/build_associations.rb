@@ -2,7 +2,9 @@ module TvShows
   class BuildAssociations
     def self.run(tv_show)
       tv_show_json = Tmdb::Service.fetch_tv_show_by(tmdb_id: tv_show.tmdb_id)
-      tv_show = update_tv_show(tv_show_json)
+      update_tv_show(tv_show_json)
+
+      tv_show = TvShow.find_by(tmdb_id: tv_show.tmdb_id)
 
       build_seasons(tv_show_json, tv_show)
       build_people(tv_show_json, tv_show)
@@ -13,8 +15,7 @@ module TvShows
 
     def self.update_tv_show(json)
       attributes = Tmdb::Parser.run(json: json, selection: TV_SHOW_MAX_ATTRIBUTES)
-      tv_show_id = TvShow.upsert(attributes, unique_by: :tmdb_id)
-      TvShow.find(tv_show_id.rows).first
+      TvShow.upsert(attributes, unique_by: :tmdb_id)
     end
 
     def self.build_seasons(json, tv_show)
@@ -23,7 +24,7 @@ module TvShows
     end
 
     def self.build_people(json, tv_show)
-      attributes  = Tmdb::Parser.run(json: json, selection: PERSON_ATTRIBUTES)
+      attributes = Tmdb::Parser.run(json: json, selection: PERSON_ATTRIBUTES)
       tv_show.people.upsert_all(attributes, unique_by: :tmdb_id) if attributes.present?
     end
 
@@ -32,8 +33,8 @@ module TvShows
 
       tv_show.seasons.each do |season|
         attributes = episodes_attributes
-                      .extend(Hashie::Extensions::DeepLocate)
-                      .deep_locate lambda { |k, v, _object| k == :season_number && v == season.season_number }
+                     .extend(Hashie::Extensions::DeepLocate)
+                     .deep_locate ->(k, v, _object) { k == :season_number && v == season.season_number }
         season.episodes.upsert_all(attributes, unique_by: :tmdb_id) if attributes.present?
       end
     end

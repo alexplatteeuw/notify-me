@@ -32,10 +32,8 @@ class FavoritesController < ApplicationController
 
   def set_favorite
     if params[:type] == 'tv_show'
-      @favorite = TvShow.find_by(tmdb_id: params[:tmdb_id])
-      return if @favorite.seasons.present? && @favorite.updated_at > Time.now - 6.hours
-      BuildTvShowAssociations.run(@favorite)
-      @favorite = TvShow.find_or_initialize_by(tmdb_id: params[:id])
+      build_tv_show_associations
+      @favorite = @tv_show
     end
   end
 end

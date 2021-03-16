@@ -1,5 +1,5 @@
 <div class="icon" id="<%= type %>-<%= favorite.tmdb_id %>-icon">
-  <%= link_to toggle_favorite_path(tmdb_id: favorite.tmdb_id, type: type), method: :post, remote: true do %>
+  <%= link_to toggle_favorite_path(id: favorite.tmdb_id, type: type), method: :post, remote: true do %>
     <% if current_user.favorited?(favorite, scope: :favorite) %>
       <i class="fas fa-heart"></i>
     <% else %>

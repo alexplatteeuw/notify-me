@@ -1,6 +1,6 @@
 class TvShowsController < ApplicationController
-  after_action :set_tv_shows, only: [:index]
-  before_action :set_tv_show, only: [:show]
+  after_action :build_associations_in_jobs, only: [:index]
+  before_action :build_tv_show_associations, only: [:show]
 
   def index
     if params[:query].present?
@@ -9,11 +9,7 @@ class TvShowsController < ApplicationController
       json = Tmdb::Service.fetch_popular_tv_shows
     end
 
-    if json.present?
-      attributes = Tmdb::Parser.run(json: json[:results], selection: TV_SHOW_MIN_ATTRIBUTES)
-      tv_shows_ids = TvShow.upsert_all(attributes, unique_by: :tmdb_id)
-      @tv_shows = TvShow.find(tv_shows_ids.rows)
-    end
+    build_tv_shows(json) if json.present?
 
     if @tv_shows.present?
       @pagy, @tv_shows = pagy_array(@tv_shows, items: 20)
@@ -26,17 +22,15 @@ class TvShowsController < ApplicationController
     redirect_to root_path, notice: "Sorry, TV show not found." if @tv_show.blank?
   end
 
-  def set_tv_shows
-    @tv_shows.each do |tv_show|
-      next if tv_show.seasons.present? && tv_show.episodes.present? && tv_show.updated_at > Time.now - 6.hours
-      BuildTvShowAssociationsJob.perform_later(tv_show)
-    end
+  private
+
+  def build_tv_shows(json)
+    attributes   = Tmdb::Parser.run(json: json[:results], selection: TV_SHOW_MIN_ATTRIBUTES)
+    tv_shows_ids = TvShow.upsert_all(attributes, unique_by: :tmdb_id)
+    @tv_shows    = TvShow.find(tv_shows_ids.rows)
   end
 
-  def set_tv_show
-    @tv_show = TvShow.find_or_initialize_by(tmdb_id: params[:id])
-    return if @tv_show.seasons.present? && @tv_show.episodes.present? && @tv_show.updated_at > Time.now - 6.hours
-    TvShows::BuildAssociations.run(@tv_show)
-    @tv_show = TvShow.find_or_initialize_by(tmdb_id: params[:id])
+  def build_associations_in_jobs
+    @tv_shows.each { |tv_show| BuildTvShowAssociationsJob.perform_later(tv_show) }
   end
 end

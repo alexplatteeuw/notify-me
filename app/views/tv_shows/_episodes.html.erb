@@ -1,4 +1,4 @@
-<div class="episodes row">
+<div class="row" id="episodes">
   <% if @tv_show.last_aired_episode.present? %>
     <%= render partial: "episode", locals: { episode: @tv_show.last_aired_episode, type: "Last" } %>
   <% end %>

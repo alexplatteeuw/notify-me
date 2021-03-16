@@ -7,6 +7,7 @@ class CreateSeasons < ActiveRecord::Migration[6.1]
       t.integer :season_number
       t.string :name
       t.text :overview
+      t.string :poster_path
       t.string :still_path
       t.float :vote_average
       t.integer :episode_count

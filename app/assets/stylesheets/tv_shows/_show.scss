@@ -1,7 +1,7 @@
 .banner {
   background-size: cover;
   background-position: center;
-  padding: 38px 0;
+  padding: 2rem 0;
   color: white;
 
   h1 {
@@ -59,10 +59,9 @@
   }
 }
 
-.show-grid-container {
+#show-grid-container {
   display: flex;
   overflow-x: auto;
-  padding: 0.8rem 0;
 
   .card:first-child {
     margin-left: 0;
@@ -73,10 +72,15 @@
   }
 
   .card {
-    margin: 0.8rem;
-    min-width: 130px;
+    margin: 0 0.8rem 0.8rem;
+    min-width: 138px;
+    max-width: 138px;
     border: none;
     border-radius: 10px;
+
+    .card-body {
+      padding: 1rem;
+    }
 
     img {
       border-radius: 10px 10px 0 0;
@@ -84,11 +88,12 @@
 
     p {
       font-size: 0.7rem;
+      margin-bottom: 0;
     }
   }
 }
 
-.episodes {
+#episodes {
   .card {
     font-size: 0.7rem;
     width: 100%;
@@ -100,5 +105,47 @@
     .bg-lightgray {
       background-color: lightgray;
     }
+  }
+}
+
+#season {
+  .card-season {
+    overflow: hidden;
+    background: white;
+    display: flex;
+    align-items: start;
+
+    .bg-lightgray {
+      background-color: lightgray;
+    }
+
+    .card-infos {
+      padding: 1.5rem 2rem 0 2rem;
+      .overview {
+        line-height: 20px;
+        height: 100%;
+        overflow: hidden;
+        max-height: 80px;
+        text-align: justify;
+      }
+    }
+
+    img {
+      object-fit: cover;
+      min-height: 195px;
+      min-width: 130px;
+    }
+
+    p {
+      text-align: justify;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+section.tv-show-sections {
+  margin: 1.5rem 0;
+  h2 {
+    margin-bottom: 1rem;
   }
 }
