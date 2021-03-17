@@ -1,0 +1,5 @@
+<% @season.episodes.order(episode_number: :asc).each do |episode| %>
+  <div class="row">
+    <%= render partial: 'tv_shows/episode', locals: { episode: episode, type: nil } %>
+  </div>
+<% end %>

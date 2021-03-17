@@ -1,0 +1,17 @@
+<% @seasons.order(season_number: :asc).each do |season| %>
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <%= link_to season.name, tv_show_season_path(tv_show_tmdb_id: @tv_show.tmdb_id, season_number: season.season_number) %>
+      </div>
+      <div class="card-body">
+        <p>Number of episodes: <%= season.episode_count %></p>
+        <% if season.air_date.present? %>
+          <p><%= l(season.air_date, format: :long) %></p>
+        <% else %>
+          <p>Air date unknown</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

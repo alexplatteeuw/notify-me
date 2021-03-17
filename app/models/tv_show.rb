@@ -11,10 +11,6 @@ class TvShow < ApplicationRecord
     updated_at > Time.now - period
   end
 
-  def has_seasons_and_episodes?
-    seasons.present? && episodes.present?
-  end
-
   def returning?
     status == "Returning"
   end

@@ -1,16 +1,15 @@
 <div class="container">
-  <div class="pt-5">
+  <div id="calendar-wrapper">
     <%= month_calendar(events: @episodes) do |date, episodes| %>
-      <%= l(date, format: :short) %>
-      <% episodes.each do |episode| %>
-        <div>
-          <p class="badge badge-primary">
-            <%= episode.tv_show_name %>
-            <span>
-              S<%= episode.season_number %>xE<%= episode.episode_number %>
-            </span>
-          </p>
-        </div>
+            <span><%= l(date, format: '%d') %></span>
+      <% if episodes.any? { |episode| episode.air_date == date } %>
+        <%= link_to calendar_path(start_date: date) do %>
+          <div class="td-link">
+            <% if episodes.any? { |episode| episode.air_date == date } %>
+                <i class="fas fa-video"></i>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>
