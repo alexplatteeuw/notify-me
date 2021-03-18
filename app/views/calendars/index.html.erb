@@ -4,9 +4,7 @@
     <% if episodes.any? { |episode| episode.air_date == date } %>
       <%= link_to calendar_path(selected_date: date, start_date: date.beginning_of_month) do %>
         <div class="td-link <%= episodes.any? { |episode| episode.air_date == @selected_date } && "active"  %>">
-          <% if episodes.any? { |episode| episode.air_date == date } %>
-              <i><%= episodes.count { |episode| episode.air_date == date } %></i>
-          <% end %>
+          <i><%= episodes.count { |episode| episode.air_date == date } %></i>
         </div>
       <% end %>
     <% end %>

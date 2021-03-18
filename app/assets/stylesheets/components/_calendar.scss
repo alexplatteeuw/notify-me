@@ -58,12 +58,12 @@
       }
       
         .td-link.active {
-          background-color: green;
+          background-color: #224384;
         }
     }
 
     .today {
-      background-color: #224384;
+      
     }
   
     .past {}
@@ -93,6 +93,15 @@
     height: 100%;
     padding: 1.8rem 0 0 1.8rem;
     border-left: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+      .today-link {
+        align-self: flex-end;
+        margin-bottom: 1rem;
+        margin-right: 1rem;
+      }
 
       h2 {
         margin-bottom: 1rem; 

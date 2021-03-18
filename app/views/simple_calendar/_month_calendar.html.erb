@@ -2,11 +2,11 @@
   <div class="row">
     <div class="col-8">
       <div class="calendar-heading">
-        <% if start_date > Date.current %>
+        <%# if start_date > Date.current %>
           <%= link_to t('simple_calendar.previous', default: '<<'), calendar.url_for_previous_view %>
-        <% else %>
-          <%= link_to t('simple_calendar.previous', default: ''), calendar.url_for_previous_view %>
-        <% end %>
+        <%# else %>
+          <%# link_to t('simple_calendar.previous', default: ''), calendar.url_for_previous_view %>
+        <%# end %>
         <span class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
         <%= link_to t('simple_calendar.next', default: '>>'), calendar.url_for_next_view %>
       </div>
@@ -39,20 +39,25 @@
     </div>
     <div class="col-4">
       <div id="calendar-pannel">
-        <% if @selected_date.present? %>
-          <h2>Airing on <%= l(@selected_date, format: :long) %></h2>
-          <ul>
-            <% @selected_episodes.each do |episode| %>
-              <li>
-                <div class="span-wrapper">
-                  <span class="spot"></span>
-                  <span class="tv-show-name"><%= link_to episode.season.tv_show.name, tv_show_path(tmdb_id: episode.season.tv_show.tmdb_id) %> -</span>
-                  <span class="number">S0<%= episode.season_number %>xE0<%= episode.episode_number %></span>
-                </div>
-                <div class="episode-name"><%= episode.name %></div>
-              </li>
-            <% end %>
-          </ul>
+        <div>
+          <% if @selected_date.present? %>
+            <h2>Airing<%= " on " + l(@selected_date, format: :long) %></h2>
+            <ul>
+              <% @selected_episodes.each do |episode| %>
+                <li>
+                  <div class="span-wrapper">
+                    <span class="spot"></span>
+                    <span class="tv-show-name"><%= link_to episode.season.tv_show.name, tv_show_path(tmdb_id: episode.season.tv_show.tmdb_id) %> -</span>
+                    <span class="number">S0<%= episode.season_number %>xE0<%= episode.episode_number %></span>
+                  </div>
+                  <div class="episode-name"><%= episode.name %></div>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+        <% if start_date > Date.current %>
+          <%= link_to 'Back to today', calendar_path(selected_date: Date.current), class: "today-link" %>
         <% end %>
       </div>
     </div>  
