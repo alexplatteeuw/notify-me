@@ -57,7 +57,7 @@
           <% end %>
         </div>
         <% if start_date > Date.current %>
-          <%= link_to 'Back to today', calendar_path(selected_date: Date.current), class: "today-link" %>
+          <%= link_to "< Back to the daily overview", calendar_path(selected_date: Date.current), class: "today-link" %>
         <% end %>
       </div>
     </div>  
