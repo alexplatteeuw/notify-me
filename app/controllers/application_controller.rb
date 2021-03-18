@@ -7,3 +7,11 @@ class ApplicationController < ActionController::Base
     TvShows::BuildAssociations.run(@tv_show)
   end
 end
+
+
+
+  
+
+
+
+    

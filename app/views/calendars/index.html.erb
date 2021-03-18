@@ -1,16 +1,14 @@
 <div class="container">
-  <div id="calendar-wrapper">
-    <%= month_calendar(events: @episodes) do |date, episodes| %>
-            <span><%= l(date, format: '%d') %></span>
-      <% if episodes.any? { |episode| episode.air_date == date } %>
-        <%= link_to calendar_path(start_date: date) do %>
-          <div class="td-link">
-            <% if episodes.any? { |episode| episode.air_date == date } %>
-                <i class="fas fa-video"></i>
-            <% end %>
-          </div>
-        <% end %>
+  <%= month_calendar(events: @episodes) do |date, episodes| %>
+    <span class="date"><%= l(date, format: '%d') %></span>
+    <% if episodes.any? { |episode| episode.air_date == date } %>
+      <%= link_to calendar_path(selected_date: date, start_date: date.beginning_of_month) do %>
+        <div class="td-link <%= episodes.any? { |episode| episode.air_date == @selected_date } && "active"  %>">
+          <% if episodes.any? { |episode| episode.air_date == date } %>
+              <i><%= episodes.count { |episode| episode.air_date == date } %></i>
+          <% end %>
+        </div>
       <% end %>
     <% end %>
-  </div>
+  <% end %>
 </div>
