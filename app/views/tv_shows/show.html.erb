@@ -59,7 +59,7 @@
           <div class="col-9 p-0">
             <%= render partial: "season", locals: { season: @tv_show.last_season } %>
           </div>
-          <div class="col-3 d-flex flex-row justify-content-center align-items-center"><%= link_to 'See more seasons', tv_show_seasons_path(tv_show_tmdb_id: @tv_show.tmdb_id) %></div>
+          <div class="col-3 d-flex flex-row justify-content-center align-items-center"><%= link_to 'See more seasons >>', tv_show_seasons_path(tv_show_tmdb_id: @tv_show.tmdb_id) %></div>
         </div>
       </section>
     <% end %>

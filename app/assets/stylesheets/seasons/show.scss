@@ -1,0 +1,41 @@
+#seasons-show {
+  .card {
+    overflow: hidden;
+    background: $dark-blue;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    margin: 2rem 0;
+
+    .bg-lightgray {
+      background-color: lightgray;
+    }
+
+    .card-infos {
+      padding: 0.75rem 1.5rem;
+      width: 100%;
+    }
+
+    .header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .overview {
+      margin-top: 0.25rem;
+      margin-bottom: 0;
+      line-height: 20px;
+      height: 100%;
+      overflow: hidden;
+      max-height: 60px;
+      text-align: justify;
+      font-size: smaller;
+    }
+
+    img {
+      object-fit: cover;
+      width: 252px;
+    }
+  }
+}

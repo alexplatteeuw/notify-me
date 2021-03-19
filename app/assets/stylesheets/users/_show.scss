@@ -4,6 +4,7 @@
 
   .card {
     padding: 0;
+    background-color: $dark-blue;
   }
 
   .nav-link:hover {
@@ -26,6 +27,7 @@
   #edit-user {
     i {
       cursor: pointer;
+      color: white;
     }
   }
 

@@ -1,0 +1,15 @@
+#episodes {
+  .card {
+    font-size: 0.7rem;
+    width: 100%;
+    background-color: $dark-blue;
+
+    .content {
+      padding: 1rem;
+    }
+
+    .bg-lightgray {
+      background-color: lightgray;
+    }
+  }
+}

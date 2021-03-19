@@ -1,26 +1,28 @@
-<div id="season">
-  <div class="card-season shadow-sm">
-    <% if season.poster_path.present? %>
-      <%= image_tag "#{IMAGE_URL}w130_and_h195_bestv2#{season.poster_path}" %>
-    <% else %>
-      <%= image_tag "no-season-poster.svg", class:"bg-lightgray" %>
-    <% end %>
-    <div class="card-infos">
-      <h2><%= link_to season.name, tv_show_season_path(tv_show_tmdb_id: @tv_show.tmdb_id, season_number: season.season_number) %></h2>
-      <p>
-        <% if season.air_date.present? %>
-          <%= l(season.air_date, format: "%Y") %>
-        <% else %>
-          Air date unknown
-        <% end %>
-        | <span><%= season.episode_count %> episodes</span></p>
-      <p class="overview">
-        <% if season.overview.present? %>
-          <%= season.overview %>
-        <% else %>
-          Season <%= season.season_number %> of <%= season.tv_show.name %> premiered on <%= l(season.air_date, format: :long) %>.
-        <% end %>
-      </p>
+<%= link_to tv_show_season_path(tv_show_tmdb_id: @tv_show.tmdb_id, season_number: season.season_number) do %>
+  <div class="season">
+    <div class="card-season shadow-sm">
+      <% if season.poster_path.present? %>
+        <%= image_tag "#{IMAGE_URL}w130_and_h195_bestv2#{season.poster_path}" %>
+      <% else %>
+        <%= image_tag "no-season-poster.svg", class:"bg-lightgray" %>
+      <% end %>
+      <div class="card-infos">
+        <h2><%= season.name%></h2>
+        <p>
+          <% if season.air_date.present? %>
+            <%= l(season.air_date, format: "%Y") %>
+          <% else %>
+            Air date unknown
+          <% end %>
+          | <span><%= season.episode_count %> episodes</span></p>
+        <p class="overview">
+          <% if season.overview.present? %>
+            <%= season.overview %>
+          <% else %>
+            Season <%= season.season_number %> of <%= season.tv_show.name %> premiered on <%= l(season.air_date, format: :long) %>.
+          <% end %>
+        </p>
+      </div>
     </div>
   </div>
-</div>
+<% end %>

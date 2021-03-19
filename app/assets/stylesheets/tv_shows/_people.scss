@@ -1,0 +1,40 @@
+section.tv-show-sections {
+  margin: 1.5rem 0;
+  h2 {
+    margin-bottom: 1rem;
+  }
+  #show-grid-container {
+    display: flex;
+    overflow-x: auto;
+
+    .card:first-child {
+      margin-left: 0;
+    }
+
+    .card:last-child {
+      margin-right: 0;
+    }
+
+    .card {
+      margin: 0 0.8rem 0.8rem;
+      min-width: 138px;
+      max-width: 138px;
+      border: none;
+      border-radius: 10px;
+      background-color: $dark-blue;
+
+      .card-body {
+        padding: 1rem;
+      }
+
+      img {
+        border-radius: 10px 10px 0 0;
+      }
+
+      p {
+        font-size: 0.7rem;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

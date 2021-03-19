@@ -1,0 +1,15 @@
+<div class="card shadow-sm">
+  <% if episode.present? && episode.still_path.present? %>
+    <%= image_tag "#{IMAGE_URL}w300#{episode.still_path}", class: "card-img-top" %>
+  <% else %>
+    <%= image_tag "no-thumbnail.svg", class:"bg-lightgray card-img-top" %>
+  <% end %>
+  <div class="card-infos">
+    <div class="header">
+      <h3><%= episode.episode_number %>.  <%= episode.name %></h3>
+      <h4><%= l(episode.air_date, format: :long) %></h4>
+    </div>
+    <p>Vote: <%= episode.vote_average %></p>
+    <p class="overview"><%= episode.overview %></p>
+  </div>
+</div>
