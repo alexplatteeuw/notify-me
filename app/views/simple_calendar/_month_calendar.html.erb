@@ -42,22 +42,28 @@
         <div>
           <% if @selected_date.present? %>
             <h2>Airing<%= " on " + l(@selected_date, format: :long) %></h2>
-            <ul>
-              <% @selected_episodes.each do |episode| %>
-                <li>
-                  <div class="span-wrapper">
-                    <span class="spot"></span>
-                    <span class="tv-show-name"><%= link_to episode.season.tv_show.name, tv_show_path(tmdb_id: episode.season.tv_show.tmdb_id) %> -</span>
-                    <span class="number">S0<%= episode.season_number %>xE0<%= episode.episode_number %></span>
-                  </div>
-                  <div class="episode-name"><%= episode.name %></div>
-                </li>
+            <% if @selected_episodes.present? %>
+              <ul>
+                <% @selected_episodes.each do |episode| %>
+                  <li>
+                    <div class="span-wrapper">
+                      <span class="spot"></span>
+                      <span class="tv-show-name"><%= link_to episode.season.tv_show.name, tv_show_path(tmdb_id: episode.season.tv_show.tmdb_id) %> -</span>
+                      <span class="number">S0<%= episode.season_number %>xE0<%= episode.episode_number %></span>
+                    </div>
+                    <div class="episode-name"><%= episode.name %></div>
+                  </li>
+                <% end %>
+              </ul>
+            <% else %>
+              <div class="span-wrapper">
+                <span class="tv-show-name">Sorry, no airings today =(</span>
+              </div>
               <% end %>
-            </ul>
           <% end %>
         </div>
-        <% if start_date > Date.current %>
-          <%= link_to "< Back to the daily overview", calendar_path(selected_date: Date.current), class: "today-link" %>
+        <% unless start_date.year ==  Date.current.year && start_date.month == Date.current.month %>
+          <%= link_to "Back to the daily overview", calendar_path(selected_date: Date.current), class: "today-link" %>
         <% end %>
       </div>
     </div>  
