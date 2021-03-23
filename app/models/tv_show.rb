@@ -1,4 +1,6 @@
 class TvShow < ApplicationRecord
+  STATUS = ["Canceled", "Ended", "In Production", "Returning series"].freeze
+
   acts_as_favoritable
 
   has_many :seasons, dependent: :destroy

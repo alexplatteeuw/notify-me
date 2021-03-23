@@ -2,8 +2,8 @@ class FavoritesController < ApplicationController
   before_action :set_favorite, only: [:toggle]
 
   def index
-    @favorites = current_user.favorited_by_type('TvShow')
-    @favorites = @favorites.where(status: params[:status]) if params[:status].present?
+    @q = current_user.favorited_by_type('TvShow').ransack(params[:q])
+    @favorites = @q.result(distinct: true)
     @pagy, @favorites = pagy_array(@favorites, items: 6)
   end
 
@@ -32,7 +32,7 @@ class FavoritesController < ApplicationController
 
   def set_favorite
     if params[:type] == 'tv_show'
-      build_tv_show_associations
+      set_tv_show
       @favorite = @tv_show
     end
   end

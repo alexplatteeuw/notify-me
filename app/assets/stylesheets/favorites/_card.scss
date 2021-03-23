@@ -1,10 +1,3 @@
-.favorites-grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 500px);
-  gap: 0.5rem;
-  justify-content: space-between;
-}
-
 .favorite-tv-card {
   position: relative;
 
@@ -58,26 +51,5 @@
     position: absolute;
     right: 1.5rem;
     bottom: 0.1rem;
-  }
-
-  ul.notifications {
-    display: flex;
-    list-style-type: none;
-    position: absolute;
-    right: 3.25rem;
-    top: 1.5rem;
-    li:first-child {
-      margin: 0 0.25rem;
-    }
-  }
-}
-
-ul.favorites-sorting {
-  display: flex;
-  list-style-type: none;
-  justify-content: flex-end;
-  margin: 1rem 0 1rem;
-  li {
-    margin: 0 0.5rem;
   }
 }

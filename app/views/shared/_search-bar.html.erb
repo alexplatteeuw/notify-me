@@ -1,8 +1,5 @@
-<div class="container">
-  <%= form_with url: url, method: :get, remote: true do |form| %>
-    <div class="input-group">
-      <%= form.text_field :query, placeholder: "Search for a movie, tv show, person ...", class: "form-control" %>
-      <%= form.submit "Search", class: "input-group-append btn btn-primary" %>
-    </div>
-  <% end %>
-</div>
+<%= form_with url: url, method: :get, remote: true do |form| %>
+  <div class="input-group">
+    <%= form.text_field :query, placeholder: "Search", class: "form-control" %>
+  </div>
+<% end %>

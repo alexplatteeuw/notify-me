@@ -1,4 +1,10 @@
-.search-bar.bg-gray {
-  background-color: rgba(31, 41, 55, 1);
-  color: white;
+.search-bar {
+  margin-right: 1rem;
+  width: 240px;
+
+  input {
+    background-color: rgba(55, 65, 81, 1);
+    border-color: transparent;
+    border-radius: 0.5rem;
+  }
 }
