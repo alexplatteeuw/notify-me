@@ -4,6 +4,8 @@
     background: $dark-blue;
     display: flex;
     align-items: start;
+    border-radius: $border-radius;
+    margin-bottom: 2rem;
 
     .bg-lightgray {
       background-color: lightgray;

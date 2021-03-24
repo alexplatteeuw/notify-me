@@ -1,11 +1,17 @@
 #seasons-show {
+  padding-top: 2rem;
+
+  h2 {
+    padding-bottom: 1rem;
+  }
+
   .card {
     overflow: hidden;
     background: $dark-blue;
     display: flex;
     flex-direction: row;
     align-items: start;
-    margin: 2rem 0;
+    margin-bottom: 2rem;
 
     .bg-lightgray {
       background-color: lightgray;

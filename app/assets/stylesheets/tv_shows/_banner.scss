@@ -41,7 +41,7 @@
 
   #poster {
     img {
-      border-radius: 8px;
+      border-radius: $border-radius;
       box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
     }
 

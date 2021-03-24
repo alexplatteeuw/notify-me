@@ -4,15 +4,15 @@ class TvShowsController < ApplicationController
 
   def index
     if params[:query].present?
-      json = Tmdb::Service.fetch_tv_shows_by(query: params[:query])
+      json = Tmdb::Service.fetch_tv_shows_by(query: params[:query], page: params[:page])
     else
-      json = Tmdb::Service.fetch_popular_tv_shows
+      json = Tmdb::Service.fetch_popular_tv_shows(page: params[:page])
     end
 
     build_tv_shows(json) if json.present?
 
     if @tv_shows.present?
-      @pagy, @tv_shows = pagy_array(@tv_shows, items: 20)
+      @pagy = Pagy.new(count: json[:total_results], page: params[:page])
     else
       flash.now.alert = "Sorry, no TV shows found."
     end

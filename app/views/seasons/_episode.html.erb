@@ -7,7 +7,7 @@
   <div class="card-infos">
     <div class="header">
       <h3><%= episode.episode_number %>.  <%= episode.name %></h3>
-      <h4><%= l(episode.air_date, format: :long) %></h4>
+      <h4><%= l(episode.air_date, format: :long, default: 'Unknown air date') %></h4>
     </div>
     <p>Vote: <%= episode.vote_average %></p>
     <p class="overview"><%= episode.overview %></p>

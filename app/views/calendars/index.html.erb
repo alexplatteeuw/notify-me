@@ -1,6 +1,6 @@
 <div class="container">
   <%= month_calendar(events: @episodes) do |date, episodes| %>
-    <span class="date"><%= l(date, format: '%d') %></span>
+    <span class="date"><%= l(date, format: '%d', default: '0') %></span>
     <% if episodes.any? { |episode| episode.air_date == date } %>
       <%= link_to calendar_path(selected_date: date, start_date: date.beginning_of_month) do %>
         <div class="td-link <%= episodes.any? { |episode| episode.air_date == @selected_date } && "active"  %>">

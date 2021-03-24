@@ -7,7 +7,7 @@
           <h1>
             <%= @tv_show.name %>
             <% if @tv_show.first_air_date.present? %>
-              <span id="year">(<%= l(@tv_show.first_air_date, format: "%Y") %>)</span>
+              <span id="year">(<%= l(@tv_show.first_air_date, format: "%Y", default: "Unknown first air date") %>)</span>
             <% else %>
               <span id="year">(Unknown)</span>
             <% end %>
@@ -59,7 +59,11 @@
           <div class="col-9 p-0">
             <%= render partial: "season", locals: { season: @tv_show.last_season } %>
           </div>
-          <div class="col-3 d-flex flex-row justify-content-center align-items-center"><%= link_to 'See more seasons >>', tv_show_seasons_path(tv_show_tmdb_id: @tv_show.tmdb_id) %></div>
+          <div class="col-3 d-flex flex-row justify-content-center align-items-center">
+            <% if @tv_show.number_of_seasons > 1 %>
+              <%= link_to 'See more seasons >>', tv_show_seasons_path(tv_show_tmdb_id: @tv_show.tmdb_id) %>
+            <% end %>
+          </div>
         </div>
       </section>
     <% end %>

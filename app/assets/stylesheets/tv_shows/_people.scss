@@ -20,7 +20,7 @@ section.tv-show-sections {
       min-width: 138px;
       max-width: 138px;
       border: none;
-      border-radius: 10px;
+      border-radius: $border-radius;
       background-color: $dark-blue;
 
       .card-body {
@@ -28,7 +28,7 @@ section.tv-show-sections {
       }
 
       img {
-        border-radius: 10px 10px 0 0;
+        border-radius: $border-radius $border-radius 0 0;
       }
 
       p {

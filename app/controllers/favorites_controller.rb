@@ -2,9 +2,9 @@ class FavoritesController < ApplicationController
   before_action :set_favorite, only: [:toggle]
 
   def index
-    @q = current_user.favorited_by_type('TvShow').ransack(params[:q])
-    @favorites = @q.result(distinct: true)
-    @pagy, @favorites = pagy_array(@favorites, items: 6)
+    @params = params.except(:page)
+    @q = current_user.favorited_by_type('TvShow').ransack(@params[:q])
+    @pagy, @favorites = pagy(@q.result(distinct: true), items: 6)
   end
 
   def toggle

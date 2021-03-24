@@ -2,7 +2,7 @@
   color: white;
   background-color: #17243d;
   padding: 3rem 2rem 2rem 2rem;
-  border-radius: 1rem;
+  border-radius: $border-radius;
   margin: 5rem 0 3rem 0;
 
   .calendar-heading {
@@ -34,7 +34,7 @@
     min-width: 50px;
     background-color: rgba(0, 0, 0, 0.5);
     border: none;
-    border-radius: 0.5rem;
+    border-radius: $border-radius-sm;
     position: relative;
 
     .date {
@@ -48,7 +48,7 @@
       height: 100%;
       padding: 0.5rem;
       position: relative;
-      border-radius: 0.5rem;
+      border-radius: $border-radius-sm;
     }
   }
 
@@ -120,7 +120,7 @@
       justify-content: center;
       margin: 0.6rem 0;
       background-color: rgba(0, 0, 0, 0.3);
-      border-radius: 0.5rem;
+      border-radius: $border-radius-sm;
       padding: 0 0.8rem;
     }
 

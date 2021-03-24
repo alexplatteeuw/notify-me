@@ -1,11 +1,11 @@
 module SortAndFilterLinksHelper
   def generate_filter_link(status)
-    link_to status, request.query_parameters.deep_merge(q: { status_cont: status }),
+    link_to status, request.query_parameters.slice(:q).deep_merge(q: { status_cont: status }),
             class: class_names(active: status_selected?(status), filter_link: true)
   end
 
   def generate_sort_link(query, attribute, name, order)
-    sort_link(query, attribute, name, { default_order: order },
+    sort_link(query, attribute, name, { default_order: order, page: nil },
               { class: class_names(active: sort_selected?(attribute)) })
   end
 

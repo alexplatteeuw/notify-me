@@ -1,9 +1,11 @@
 <div class="container">
   <div id="seasons-show">
     <div class="col-9 mx-auto">
-      <% @season.episodes.order(episode_number: :asc).each do |episode| %>
+      <h2><%= @tv_show.name %> - Season <%= @season.season_number %></h2>
+      <% @episodes.each do |episode| %>
           <%= render partial: 'episode', locals: { episode: episode, type: nil } %>
       <% end %>
+      <%= render partial: 'shared/pagy' %>
     </div>
   </div>
 </div>

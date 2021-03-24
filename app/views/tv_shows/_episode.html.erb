@@ -11,7 +11,7 @@
           <li><%= type %> episode<b> (S0<%= episode.season_number %>xE0<%= episode.episode_number %>)</b></li>
           <br>
           <li><%= episode.name %></li>
-          <li>Air date: <%= l(episode.air_date, format: :long) %></li>
+          <li>Air date: <%= l(episode.air_date, format: :long, default: 'Unknown air date') %></li>
           <li>Vote: <%= episode.vote_average %></li>
         <% else %>
           <li>Next episode</li>

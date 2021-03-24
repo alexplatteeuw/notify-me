@@ -1,8 +1,10 @@
-<% @seasons.order(season_number: :asc).each do |season| %>
-  <% next if season.season_number.zero? %> <%# quick fix %>
   <div class="container">
     <div class="col-9 mx-auto my-5">
-      <%= render partial: 'tv_shows/season', locals: { season: season } %>
+      <h2 class='pb-3'><%= @tv_show.name %></h2>
+      <% @seasons.order(season_number: :asc).each do |season| %>
+        <% next if season.season_number.zero? %> <%# quick fix %>
+        <%= render partial: 'tv_shows/season', locals: { season: season } %>
+      <% end %>
+      <%= render partial: 'shared/pagy' %>
     </div>
   </div>
-<% end %>
