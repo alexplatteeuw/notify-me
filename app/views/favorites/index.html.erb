@@ -14,25 +14,24 @@
     <div class="col-3" id="pannel">
       <div class="search-bar">
         <%= search_form_for @q, url: favorites_path do |f| %>
-          <%= f.search_field :name_cont, class: "form-control", placeholder: "Search" %>
+          <%= f.search_field :name_or_overview_cont, class: "form-control", placeholder: "Search" %>
         <% end %>
       </div>
-      <p class="pt-3">FILTER BY</p>
       <ul>
-        <li><%= link_to "All", favorites_path %></li>
+        <p class="pt-3">FILTER BY</p>
+        <li><%= link_to 'All', favorites_path, class: class_names(active: !any_status_selected?, filter_link: true) %></li>
         <% TvShow::STATUS.each do |status| %>
-          <li><%= link_to status, favorites_path(q: {status_cont: status}) %></li>
+          <li><%= generate_filter_link(status) %></li>
         <% end %>
       </ul>
-      <p class="pt-3">SORT BY</p>
       <ul>
-        <li><%= sort_link(@q, :name, 'Name', default_order: :asc) %></li>
-        <li><%= sort_link(@q, :vote_average, 'Vote average', default_order: :desc) %></li>
-        <li><%= sort_link(@q, :first_air_date, 'Air Date', default_order: :desc) %></li>
-        <li><%= sort_link(@q, :episode_run_time, 'Episode run time', default_order: :asc) %></li>
-        <li><%= sort_link(@q, :number_of_seasons, 'Number of seasons', default_order: :desc) %></li>
+        <p class="pt-3">SORT BY</p>
+        <li><%= generate_sort_link(@q, :name, 'Name', :asc) %></li>
+        <li><%= generate_sort_link(@q, :vote_average, 'Vote average', :desc) %></li>
+        <li><%= generate_sort_link(@q, :first_air_date, 'First air date', :desc) %></li>
+        <li><%= generate_sort_link(@q, :episode_run_time, 'Episode run time', :asc) %></li>
+        <li><%= generate_sort_link(@q, :number_of_seasons, 'Number of seasons', :desc) %></li>
       </ul>
     </div>
   </div>
 </div>
-

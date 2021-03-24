@@ -19,7 +19,7 @@
           <% if season.overview.present? %>
             <%= season.overview %>
           <% else %>
-            Season <%= season.season_number %> of <%= season.tv_show.name %> premiered on <%= l(season.air_date, format: :long) %>.
+            Season <%= season.season_number %> of <%= season.tv_show.name %> premiered on <%= l(season.air_date, format: :long, default: "") %>.
           <% end %>
         </p>
       </div>

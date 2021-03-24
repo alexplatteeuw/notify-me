@@ -1,7 +1,7 @@
 class Episode < ApplicationRecord
   belongs_to :season
   validates :tmdb_id, presence: true, uniqueness: true
-  
+
   scope :upcoming, -> { where("episodes.air_date > ?", Time.now).order(air_date: :asc) }
   scope :aired, -> { where("episodes.air_date < ?", Time.now).order(air_date: :asc) }
   scope :displayed_in_month_calendar,

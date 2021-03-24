@@ -1,10 +1,14 @@
 .search-bar {
-  margin-right: 1rem;
-  width: 240px;
-
   input {
     background-color: rgba(55, 65, 81, 1);
     border-color: transparent;
     border-radius: 0.5rem;
+  }
+}
+
+.navbar {
+  .search-bar {
+    margin-right: 1rem;
+    width: 240px;
   }
 }
