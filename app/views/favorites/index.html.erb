@@ -9,7 +9,14 @@
     <div class="col-3" id="side-pannel">
       <div class="search-bar">
         <%= search_form_for @q, url: favorites_path do |f| %>
-          <%= f.search_field :name_or_overview_cont, class: "form-control", placeholder: "Search" %>
+          <div class="relative">
+            <div class="absolute">
+              <%= render partial: "shared/magnifying-glass" %>
+            </div>
+            <div class="input-group">
+              <%= f.search_field :name_or_overview_cont, class: "form-control", placeholder: "Search" %>
+            </div>
+          </div>
         <% end %>
       </div>
       <ul>

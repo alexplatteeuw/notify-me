@@ -9,16 +9,18 @@
         <% end %>
         <div class="infos">
           <h2 class="name"><%= tv_show.name %></h2>
-          <p><% if tv_show.first_air_date.present? %>
-            <%= l(tv_show.first_air_date, format: :long, default: 'Unknown first air date') %>
-          <% else %>
-            Unknown
-          <% end %> | <%= tv_show.number_of_seasons %> seasons </p>
-          <p class="overview"><%= tv_show.overview %></p>
+          <p>
+            <%= l(tv_show.first_air_date, format: :long, default: 'Unknown air date') %> | <%= pluralize(tv_show.number_of_seasons, 'season') %>
+          </p>
+          <p class="overview">
+            <%= tv_show.overview %>
+          </p>
         </div>
       </div>
       <%= render partial: "shared/favorite-icon", locals: { favorite: tv_show, type: type } %>
-      <p class="status badge"><%= tv_show.status %></p>
+      <p class="status badge">
+        <%= tv_show.status %>
+      </p>
     </div>
   <% end %>
 </div>

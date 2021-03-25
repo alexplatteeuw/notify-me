@@ -5,7 +5,9 @@ module SortAndFilterLinksHelper
   end
 
   def generate_sort_link(query, attribute, name, order)
-    sort_link(query, attribute, name, { default_order: order, page: nil },
+    sort_link(query, attribute, name,
+              { default_order: order,
+                page: nil },
               { class: class_names(active: sort_selected?(attribute)) })
   end
 

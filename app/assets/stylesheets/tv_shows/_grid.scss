@@ -17,6 +17,8 @@
 
     .poster {
       position: relative;
+      background-color: $dark-blue;
+      border-radius: $border-radius;
       img {
         width: 180px;
         height: 270px;

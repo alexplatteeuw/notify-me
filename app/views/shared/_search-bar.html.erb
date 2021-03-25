@@ -1,5 +1,10 @@
 <%= form_with url: url, method: :get, remote: true do |form| %>
-  <div class="input-group">
-    <%= form.text_field :query, placeholder: "Search", class: "form-control" %>
+  <div class="relative">
+    <div class="absolute">
+      <%= render partial: "shared/magnifying-glass" %>
+    </div>
+    <div class="input-group">
+      <%= form.text_field :query, placeholder: "Search", class: "form-control" %>
+    </div>
   </div>
 <% end %>

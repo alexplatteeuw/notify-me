@@ -3,6 +3,30 @@
     background-color: rgba(55, 65, 81, 1);
     border-color: transparent;
     border-radius: $border-radius-sm;
+    text-indent: 1.5rem;
+    line-height: 2.5rem;
+  }
+
+  .relative {
+    position: relative;
+  }
+
+  .absolute {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    padding-left: 0.75rem;
+    z-index: 1000;
+  }
+
+  svg {
+    height: 1.25rem;
+    width: 1.25rem;
+    fill: $input-placeholder-color;
+    display: block;
   }
 }
 
