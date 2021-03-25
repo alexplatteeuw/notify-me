@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+
+  Rails.application.routes.draw do
+    Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+      ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest(Rails.application.credentials.dig(:sidekiq, :username))) &
+        ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest(Rails.application.credentials.dig(:sidekiq, :password)))
+    end
+    mount Sidekiq::Web, at: '/sidekiq'
+  end
+
   resource :user, only: [:show, :update]
   devise_for :users, controllers: { registrations: 'users/registrations' }
   resources :favorites, only: [:index]
