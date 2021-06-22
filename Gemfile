@@ -26,6 +26,7 @@ gem "sidekiq", "~> 6.1"
 gem "sidekiq-cron", "~> 1.2"
 gem "hashie", "~> 4.1"
 gem 'ransack'
+gem "rename"
 
 group :development, :test do
   gem 'pry-byebug'
@@ -47,4 +48,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
 
