@@ -1,4 +1,5 @@
 class TvShowsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
   after_action :build_associations_in_jobs, only: [:index]
   before_action :build_tv_show_associations, only: [:show]
 
@@ -9,7 +10,7 @@ class TvShowsController < ApplicationController
       json = Tmdb::Service.fetch_popular_tv_shows(page: params[:page])
     end
 
-    build_tv_shows(json) if json.present?
+    build_tv_shows(json) if json.present? && !json[:results].empty?
 
     if @tv_shows.present?
       @pagy = Pagy.new(count: json[:total_results], page: params[:page])
