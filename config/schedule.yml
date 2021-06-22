@@ -1,0 +1,4 @@
+clean_database:
+  cron: "* * * * *"
+  class: "CleanTvShows"
+  queue: default
