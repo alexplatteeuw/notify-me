@@ -17,7 +17,9 @@ import "bootstrap";
 
 // Internal imports
 import { displayAvatar } from "../components/display_avatar";
+import { checkAjaxAuthorizationError } from "../components/check_ajax_authorization_error";
 
 document.addEventListener("turbolinks:load", () => {
   displayAvatar();
+  checkAjaxAuthorizationError();
 });
