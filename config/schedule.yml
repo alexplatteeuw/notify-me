@@ -1,4 +1,4 @@
 clean_database:
-  cron: "*/30 * * * *"
+  cron: "0 3 * * *"
   class: "CleanTvShows"
   queue: default
