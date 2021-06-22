@@ -31,6 +31,6 @@ class TvShowsController < ApplicationController
   end
 
   def build_associations_in_jobs
-    @tv_shows.each { |tv_show| BuildTvShowAssociationsJob.perform_later(tv_show) }
+    @tv_shows.each { |tv_show| BuildTvShowAssociationsJob.perform_later(tv_show) } if @tv_shows
   end
 end
