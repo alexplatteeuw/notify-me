@@ -1,4 +1,4 @@
-clean_database:
-  cron: "0 3 * * *"
-  class: "CleanTvShows"
-  queue: default
+# clean_database:
+#   cron: "0 3 * * *"
+#   class: "CleanTvShows"
+#   queue: default
